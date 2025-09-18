@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	<bean id="performanceAspect"
+		class="aop_01.com.spring_aop.xml2.PerfomanceAspect" />
+
+	<aop:config>
+		<!-- advice 클래스 등록 -->
+		<aop:aspect id="performanceAspect" ref="performanceAspect">
+			<!-- where : srping_aop_xml 패키지 내 모든 메소드에 적용 -->
+			<!--  xml2 경로도 추가 -->
+			<aop:pointcut expression="within(aop_01.com.spring_aop.xml..*) or within(aop_01.com.spring_aop.xml2..*)" id="timeElapse" />
+			<!-- what : trace() 메소드, when : 핵심기능 전/후 -->
+			<aop:around pointcut-ref="timeElapse" method="trace"/>
+		</aop:aspect>
+	</aop:config>
+	
+	
+	<bean id="rect" class="aop_01.com.spring_aop.xml.Rect">
+		<property name="width" value="10"/>	
+		<property name="height" value="20"/>	
+	</bean>
+	
+	<bean id="gugudan" class="aop_01.com.spring_aop.xml.Gugudan">
+		<property name="dan" value="7"/>	
+	</bean>
+	
+<bean id="evaluation" class="aop_01.com.spring_aop.xml2.Evaluation">
+    <property name="kor" value="90"/>
+    <property name="eng" value="85"/>
+    <property name="math" value="95"/>
+</bean>
+	
+	<bean id="circle" class="aop_01.com.spring_aop.xml2.Circle">
+		<property name="radius" value="10"/>
+	</bean>
+	
+	
+	
+</beans>
