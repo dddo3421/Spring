@@ -14,6 +14,12 @@
 	제조회사 : ${prdCompany}<br>
 	제조일   : ${prdDate}<br>
 	재고     : ${prdStock}<br>
+	
+	<br>
+	상품명 : <a href="/project/product/productDetailView/${prdName}">${prdName}</a><br>
+	
+	상품명 : <a href="/project/product/productDetailView/${prdName}/${prdStock}/${prdNo}">${prdName}</a><br>
+	
 	<a href="<c:url value='/'/>">index</a>
 </body>
 </html>
