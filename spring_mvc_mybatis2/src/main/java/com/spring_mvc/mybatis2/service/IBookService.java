@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 import com.spring_mvc.mybatis2.model.BookVO;
 
-
-
 public interface IBookService {
 	//구현 클래스에서 오버라이딩할 추상 메소드 
 		//규격지정 

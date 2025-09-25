@@ -12,13 +12,13 @@
 		<h3>전체 도서 조회</h3>		
 		<table border="1" width="600">
 			<tr>
-				<th>도서번호</th>
-				<th>도서명</th>
-				<th>저자</th>
-				<th>가격</th>
-				<th>재고</th>
-				<th>출판사</th>
-				<th>출판일</th>
+		        <th>도서번호</th>
+		        <th>도서명</th>
+		        <th>저자</th>
+		        <th>가격</th>
+		        <th>출판일</th>
+		        <th>재고</th>
+		        <th>출판사</th>
 			</tr>
 			
 			<!-- 반복문 사용해서 모든 데이터 출력 -->
@@ -26,11 +26,11 @@
 			<!-- 날짜 포맷 설정 : 2025-05-10 형식 -->
 			<c:forEach items="${bookList}" var="book">
 			<tr>
-				<td><a href="">${book.bookNo}</a></td>
+				<td><a href="<c:url value='/book/detailViewBook/${book.bookNo }'/>">${book.bookNo}</a></td>
 				<td>${book.bookName}</td>
 				<td>${book.bookAuthor}</td>
 				<td>${book.bookPrice}</td>
-				<td><fmt:formatDate value="${book.bookDate}" pattern="yyyy-MM-dd"/></td>
+				<td><fmt:formatDate value="${book.bookDate}" pattern="YYYY-MM-dd"/></td>
 				<td>${book.bookStock}</td>				
 				<td>${book.pubNo}</td>
 			</tr>

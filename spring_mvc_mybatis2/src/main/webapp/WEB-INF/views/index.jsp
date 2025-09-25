@@ -12,7 +12,7 @@
 		
 		<a href="/mybatis2/book/listAllBook">전체 도서 조회</a><br> 
 		<a href='<c:url value="/book/listAllBook"/>'>전체 도서 조회</a><br>
-		<a href='<c:url value="/book/insertBook"/>'>도서 등록</a><br>
+		<a href='<c:url value="/book/newBookForm"/>'>도서 등록</a><br>
 
 </body>
 </html>

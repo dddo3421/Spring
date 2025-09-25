@@ -9,10 +9,8 @@ import org.springframework.stereotype.Service;
 import com.spring_mvc.mybatis2.dao.IBookDAO;
 import com.spring_mvc.mybatis2.model.BookVO;
 
-
 @Service
 public class BookService implements IBookService {
-	
 	@Autowired
 	@Qualifier("IBookDAO")
 	IBookDAO dao;
@@ -24,26 +22,22 @@ public class BookService implements IBookService {
 
 	@Override
 	public void insertBook(BookVO vo) {
-		// TODO Auto-generated method stub
-		
+		dao.insertBook(vo);		
 	}
 
 	@Override
 	public void updateBook(BookVO bookVo) {
-		// TODO Auto-generated method stub
-		
+		dao.updateBook(bookVo);		
 	}
 
 	@Override
 	public void deleteBook(String bookNo) {
-		// TODO Auto-generated method stub
-		
+		dao.deleteBook(bookNo);		
 	}
 
 	@Override
 	public BookVO detailViewBook(String bookNo) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.detailViewBook(bookNo);
 	}
 
 }
