@@ -58,5 +58,26 @@
 		DELETE FROM product WHERE prdNo=#{prdNo}
 	</delete>
 	
+	<!-- 상품번호 중복 확인 -->
+	<select id="prdNoCheck" resultType="string" parameterType="string">
+		SELECT prdNo FROM product where prdNo=#{prdNo}
+	</select>
+	
+	<!-- 상품 검색 
+		검색기준 : type:prdName, type:prdCompany
+			if 문을 표현하는 mybatis 태그 <choose><when>
+		검색어 : keyword:사용자입력값
+	-->
+	<select id="productSearch" parameterType="hashmap" resultMap="prdResult">
+		select * from product where 
+			<choose>
+				<when test="type != null and type.equals('prdName')">
+					prdName like '%'||#{keyword}||'%'
+				</when>
+				<when test="type !=null and type.equals('prdCompany')">
+					prdCompany like '%'||#{keyword}||'%'
+				</when>
+			</choose>
+	</select>
 	
 </mapper>

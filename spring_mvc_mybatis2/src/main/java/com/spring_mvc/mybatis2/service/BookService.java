@@ -1,6 +1,7 @@
 package com.spring_mvc.mybatis2.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -38,6 +39,16 @@ public class BookService implements IBookService {
 	@Override
 	public BookVO detailViewBook(String bookNo) {
 		return dao.detailViewBook(bookNo);
+	}
+
+	@Override
+	public String bookNoCheck(String bookNo) {
+		return dao.bookNoCheck(bookNo);
+	}
+
+	@Override
+	public ArrayList<BookVO> bookSearch(HashMap<String, Object> map) {
+		return dao.bookSearch(map);
 	}
 
 }
