@@ -62,22 +62,22 @@ public class ProductController {
 		ProductVO prd = service.detailViewProduct(prdNo);
 		//2. 반환 정보 모델에 저장
 		model.addAttribute("prd",prd);
-		//3. view 페이지 결정 
+		//3. view 페이지 결정
 		return "product/productDetailView";
 	}
 	
-	//상품정보 수정 요청 처리 - 수정폼 : /product/updateProductForm/1003
+	//상품정보 수정 요청 처리 - 수정폼  : /product/updateProductForm/1003
 	@RequestMapping("/product/updateProductForm/{prdNo}")
 	public String updateProductForm(@PathVariable String prdNo, Model model) {
 		ProductVO prd = service.detailViewProduct(prdNo);
 		model.addAttribute("prd",prd);
-		return "product/updateProductForm";	
+		return "product/updateProductForm";
 	}
 	
 	//상품정보 수정 로직 처리
 	@RequestMapping("/product/updateProduct")
 	public String updateProduct(ProductVO prd) {
-		service.updateProduct(prd);	
+		service.updateProduct(prd);
 		return "redirect:/product/listAllProduct";
 	}
 	
@@ -87,112 +87,181 @@ public class ProductController {
 		service.deleteProduct(prdNo);
 		return "redirect:/product/listAllProduct";
 	}
+	///////////////////////////////////////////////////////////////////////////////////////////
+	// ajax 처리 연습////////////
 	
-	////////////////////////////////////////////////////////////////////////////
-	// ajax 처리 연습////////////////
-	
-	//ajax post방식 요청 처리 
 	//상품정보 중복 확인 처리
-	@ResponseBody
+	@ResponseBody //method단위로 rest 구성
 	@RequestMapping("/product/prdNoCheck")
 	public String prdNoCheck(@RequestParam("prdNo") String prdNo) {
-		String prdNo_result =  service.prdNoCheck(prdNo);
-		
+		String prdNo_result = service.prdNoCheck(prdNo);
+		System.out.println(prdNo);
 		String result = "available";
-		if(prdNo_result !=null) {
+		if(prdNo_result != null) {
 			result = "no_available";
 		}
- 		return result;
+		return result;
 	}
 	
-	//ajax get방식 요청 처리 - 요청url에 상품번호가 포함됨
-	//상품정보 중복 확인 처리 
+	//ajax get 방식 요청 처리 - 요청 url에 상품번호가 포함됨
+	//상품정보 중복 확인 처리
 	@ResponseBody
 	@RequestMapping("/product/prdNoCheck1/{prdNo}")
 	public String prdNoCheck1(@PathVariable String prdNo) {
-		String prdNo_result =  service.prdNoCheck(prdNo);
+		String prdNo_result = service.prdNoCheck(prdNo);
 		System.out.println(prdNo);
 		String result = "available";
-		if(prdNo_result !=null) {
+		if(prdNo_result != null) {
 			result = "no_available";
 		}
- 		return result;
-	}
+		return result;
+	}	
 	
-
-	//fetch() get방식 요청 처리 - 요청url에 상품번호가 포함됨
-	//상품정보 중복 확인 처리 
+	//fetch() get 방식 요청 처리 - 요청 url에 상품번호가 포함됨
+	//상품정보 중복 확인 처리
 	@ResponseBody
 	@RequestMapping("/product/prdNoCheck2/{prdNo}")
 	public String prdNoCheck2(@PathVariable String prdNo) {
-		String prdNo_result =  service.prdNoCheck(prdNo);
+		String prdNo_result = service.prdNoCheck(prdNo);
 		System.out.println(prdNo);
 		String result = "available";
-		if(prdNo_result !=null) {
+		if(prdNo_result != null) {
 			result = "no_available";
 		}
- 		return result;
+		return result;
 	}
 	
-	//fetch() post방식 요청 처리 - 네트워크 data body key에 상품번호가 포함됨
-		//상품정보 중복 확인 처리 
-		@ResponseBody
-		@RequestMapping("/product/prdNoCheck3")
-		public String prdNoCheck3(@RequestBody String prdNo) {
-			String prdNo_result =  service.prdNoCheck(prdNo);
-			System.out.println(prdNo);
-			String result = "available";
-			if(prdNo_result !=null) {
-				result = "no_available";
-			}
-	 		return result;
-		}
 	
-		// axios() get 방식 - 요청url에 상품번호가 포함됨
-		//상품정보 중복 확인 처리 
-		@ResponseBody
-		@RequestMapping("/product/prdNoCheck4/{prdNo}")
-		public String prdNoCheck4(@PathVariable String prdNo) {
-			String prdNo_result =  service.prdNoCheck(prdNo);
-			System.out.println(prdNo);
-			String result = "available";
-			if(prdNo_result !=null) {
-				result = "no_available";
-			}
-	 		return result;
+	//fetch() post 방식 요청 처리 - 네트워크 data body key에 상품번호가 포함됨
+	//상품정보 중복 확인 처리
+	@ResponseBody
+	@RequestMapping("/product/prdNoCheck3")
+	public String prdNoCheck3(@RequestBody String prdNo) {
+		String prdNo_result = service.prdNoCheck(prdNo);
+		System.out.println(prdNo);
+		String result = "available";
+		if(prdNo_result != null) {
+			result = "no_available";
 		}
-		
-		// axios() post 방식 
-		//상품정보 중복 확인 처리 
-		@ResponseBody
-		@RequestMapping("/product/prdNoCheck5")
-		public String prdNoCheck5(@RequestBody HashMap<String, String> map) {
-			String prdNo = map.get("prdNo");
-			String prdNo_result =  service.prdNoCheck(prdNo);
-			System.out.println(prdNo);
-			String result = "available";
-			if(prdNo_result !=null) {
-				result = "no_available";
-			}
-	 		return result;
-		}	
+		return result;
+	}
 	
-	///////////////////////
+	//axios() get 방식 요청 처리 - 요청 url에 상품번호가 포함됨
+	//상품정보 중복 확인 처리
+	@ResponseBody
+	@RequestMapping("/product/prdNoCheck4/{prdNo}")
+	public String prdNoCheck4(@PathVariable String prdNo) {
+		String prdNo_result = service.prdNoCheck(prdNo);
+		System.out.println(prdNo);
+		String result = "available";
+		if(prdNo_result != null) {
+			result = "no_available";
+		}
+		return result;
+	}	
+
+	//axios() post 방식 요청 처리 - 요청 url에 상품번호가 포함됨
+	//상품정보 중복 확인 처리
+	@ResponseBody
+	@RequestMapping("/product/prdNoCheck5")
+	public String prdNoCheck5(@RequestBody HashMap<String, String> map) {
+		String prdNo = map.get("prdNo");
+		String prdNo_result = service.prdNoCheck(prdNo);
+		System.out.println(prdNo);
+		String result = "available";
+		if(prdNo_result != null) {
+			result = "no_available";
+		}
+		return result;
+	}
+	
 	//상품검색 폼 요청 처리
-	@RequestMapping("/product/productSearchForm1")	
+	@RequestMapping("/product/productSearchForm1")
 	public String productSearchForm1() {
 		return "product/productSearchForm1";
 	}
 	
 	//상품 검색 처리
-	//파라미터 2개 전송됨 : 검색기준, 검색어
+	//파라미터 2개 전송됨 : 검색기준,검색어 : type:prdName keyword:모니터
 	@ResponseBody
 	@RequestMapping("/product/productSearch1")
 	public ArrayList<ProductVO> productSearch1(@RequestParam HashMap<String, Object> param, Model model) {
 		ArrayList<ProductVO> prdList = service.productSearch(param);
-		//model.addAttribute("prdList", prdList);
+		//model.addAttribute("prdList",prdList);
 		
 		return prdList; //ArrayList 반환
 	}
+
+	//상품검색 폼2 요청 처리
+	@RequestMapping("/product/productSearchForm2")
+	public String productSearchForm2() {
+		return "product/productSearchForm2";
+	}
+
+	//상품 검색 처리2
+	//파라미터 2개 전송됨 : 검색기준,검색어 : type:prdName keyword:모니터
+	@RequestMapping("/product/productSearch2")
+	public String productSearch2(@RequestParam HashMap<String, Object> param, Model model) {
+		System.out.println("test");
+		ArrayList<ProductVO> prdList = service.productSearch(param);
+		model.addAttribute("prdList",prdList);
+		
+		return "product/productSearchResultView";
+	}
 	
+	//상품검색 폼3 요청 처리
+		@RequestMapping("/product/productSearchForm3")
+		public String productSearchForm3() {
+			return "product/productSearchForm3";
+		}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

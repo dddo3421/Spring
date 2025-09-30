@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $('#bookSearchFrm1').on('submit', function(event){
+    $('#bookSearchForm').on('submit', function(event){
         event.preventDefault(); // submit 이벤트 중지
 
         let formData = $(this).serialize();
@@ -13,12 +13,13 @@ $(document).ready(function(){
 
         $.ajax({
             type: "post",
-            url: "/mybatis2/book/bookSearch1", // 서버에서 book 검색 처리 URL
+            url: "/mybatis/book/bookSearch1", // 서버에서 book 검색 처리 URL
             data: formData,
             dataType: "json", // JSON 자동 파싱
             success: function(result){
                 console.log(result);
 
+                // 기존 검색 결과 초기화
                 $('#searchResultBox').empty();
 
                 // 테이블 생성
@@ -26,10 +27,10 @@ $(document).ready(function(){
                 $table.append(
                     '<tr>' +
                     '<th>책번호</th>' +
-                    '<th>도서명</th>' +
+                    '<th>제목</th>' +
                     '<th>저자</th>' +
                     '<th>가격</th>' +
-                    '<th>출판사번호</th>' +
+                    '<th>출판사</th>' +
                     '<th>재고</th>' +
                     '<th>출판일</th>' +
                     '<th>표지</th>' +
@@ -56,13 +57,14 @@ $(document).ready(function(){
                             '<td>' + book.pubNo + '</td>' +
                             '<td>' + book.bookStock + '</td>' +
                             '<td>' + formattedDate + '</td>' +
-                            '<td><img src="/mybatis2/book_images/' + book.bookNo + '.jpg" width="40" height="50" ' +
-                            'onerror="this.src=\'/mybatis2/book_images/default.jpg\'"></td>' +
+                            '<td><img src="/mybatis/book_images/' + book.bookNo + '.jpg" width="40" height="50" ' +
+                            'onerror="this.src=\'/mybatis/book_images/default.jpg\'"></td>' +
                             '</tr>'
                         );
                     });
                 }
 
+                // 테이블 추가
                 $('#searchResultBox').append($table);
             },
             error: function(){

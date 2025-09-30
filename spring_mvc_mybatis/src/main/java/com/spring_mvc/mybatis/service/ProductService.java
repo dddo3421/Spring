@@ -15,7 +15,19 @@ public class ProductService implements IProductService{
 	@Autowired
 	@Qualifier("IProductDAO")
 	IProductDAO dao;
+
+	@Override
+	public String prdNoCheck(String prdNo) {
+		return dao.prdNoCheck(prdNo);
+	}
 	
+	
+	@Override
+	public ArrayList<ProductVO> productSearch(HashMap<String, Object> map) {
+		return dao.productSearch(map);
+	}
+
+
 	@Override
 	public ArrayList<ProductVO> listAllProduct() {		
 		return dao.listAllProduct();
@@ -28,28 +40,18 @@ public class ProductService implements IProductService{
 
 	@Override
 	public void updateProduct(ProductVO prdVo) {
-		dao.updateProduct(prdVo);
+		dao.updateProduct(prdVo);		
 	}
 
 	@Override
 	public void deleteProduct(String prdNo) {
-		dao.deleteProduct(prdNo);
+		dao.deleteProduct(prdNo);		
+	}
+
+	@Override
+	public ProductVO detailViewProduct(String prdNo) {
 		
-	}
-
-	@Override
-	public ProductVO detailViewProduct(String prdNo) {	
 		return dao.detailViewProduct(prdNo);
-	}
-
-	@Override
-	public String prdNoCheck(String prdNo) {
-		return dao.prdNoCheck(prdNo);
-	}
-
-	@Override
-	public ArrayList<ProductVO> productSearch(HashMap<String, Object> map) {		
-		return dao.productSearch(map);
 	}
 	
 }

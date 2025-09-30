@@ -7,11 +7,11 @@
 		<meta charset="UTF-8">
 		<title>상품 검색</title>
 		<script src="<c:url value='/js/jquery-3.7.1.min.js'/>"></script>
-		<script src="<c:url value='/js/productSearch1.js'/>"></script>
+		<script src="<c:url value='/js/productSearch3.js'/>"></script>
 	</head>
 	<body>
 		<h3>상품 검색</h3>
-		<form id="prdSearchFrm1">
+		<form id="prdSearchFrm3">
 			<select id="type" name="type">
 				<option value="">검색 조건 선택</option>
 				<option value="prdName">상품명</option>
@@ -22,7 +22,7 @@
 			<input type="submit" value="검색">
 		</form><br><br>
 		
-		<!-- 검색 결과 출력 : 자바스크립트 통한 동적 태그 구성(append()) -->
+		<!-- 검색 결과 출력: div에 html 페이지 삽입 -->
 		<div id="searchResultBox"></div><br><br>
 		
 		<a href="<c:url value='/'/>">메인 화면으로 이동</a>

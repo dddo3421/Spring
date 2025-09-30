@@ -16,6 +16,12 @@
 	<resources mapping="/resources/**" location="/resources/" />
 	<!-- 자바스크립트 경로 맵핑 -->
 	<resources location="/resources/js/" mapping="/js/**" />
+		<!-- 프로젝트 내부에 있는 자원의 경로 설정 -->
+	<resources mapping="/resources/**" location="/resources/" />
+		<!-- 프로젝트 외부에 있는 자원의 경로 설정(매핑) context/product_images/ -->
+	<resources location="file:///E:/SpringPRJ/workspaceSpring/book_images/" mapping="/book_images/**"/>
+	<!-- 프로젝트 내 저장된 이미지에 맵핑 설정 -->
+	<resources  location="/resources/image/" mapping="/book_image/**"/>
 	
 	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->

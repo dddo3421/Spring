@@ -10,29 +10,24 @@ $(document).ready(function(){
 		}else{ //서버측에 상품번호 중복 확인 요청
 			$.ajax({
 				type:"post",
-				url:'/mybatis/product/prdNoCheck' ,
-				data: {"prdNo" :prdNo},
-				dataType: "text" ,
-				success: function(result){
+				url:"/mybatis/product/prdNoCheck",
+				data:{"prdNo":prdNo},
+				dataType:"text",
+				success:function(result){
+					console.log(result);
 					if(result=="available"){
-						alert("사용 가능한 번호입니다")
+						alert("사용가능한 번호 입니다");
 					}else{
-						alert("사용 불가능한 번호입니다")
+						alert("사용 불가능한 번호 입니다.");
 					}
 				},
-				error: function(data, textStatus){
-					alert("전송실패");
-				} ,
-				complete: function(){
-				
+				error:function(data, textStatus){
+					alert("전송실패");				
 				}
-				
-			
 			
 			});
-		}
+		
+		}	
 	
-	
-	
-	});//on 메소드 종료
+	});//on 종료
 });//ready 종료
